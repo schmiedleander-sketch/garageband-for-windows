@@ -115,7 +115,7 @@ body {
 /* Transport Bar */
 .gb-transport-bar {
   height: 60px;
-  background: linear-gradient(180deg, #2a2c33 0%, #1e2025 100%);
+  background: #1e2025 url('assets/images/brushed_metal.png') repeat-x;
   border-bottom: 1px solid #383b42;
   display: flex;
   align-items: center;
@@ -295,13 +295,15 @@ body {
 .ruler-header {
   width: 220px;
   border-right: 1px solid #343740;
+  background: url('assets/images/wood_grain.png') repeat-y;
   display: flex;
   align-items: center;
   padding-left: 16px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  color: #9ca3af;
+  color: #f3f4f6;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 
 .ruler-ticks {
@@ -364,7 +366,7 @@ body {
 .track-header {
   width: 220px;
   border-right: 1px solid #2e313a;
-  background: #22242a;
+  background: #22242a url('assets/images/wood_grain.png') repeat-y;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -644,7 +646,7 @@ body {
   flex: 1;
   display: flex;
   padding: 12px 24px;
-  background: #121316;
+  background: #121316 url('assets/images/amp_grill.png') repeat;
   overflow: hidden;
 }
 

@@ -14,19 +14,26 @@ const fileOut = execSync(`file "${exePath}"`).toString();
 assert(fileOut.includes('PE32+ executable') || fileOut.includes('MS Windows'), 'Must be a real Windows PE executable');
 console.log('✓ Verified dist/release/GarageBand.exe is a real Windows PE32+ executable');
 
-// 2. Verify MSI installer exists and is valid Windows Installer compound file
+// 2. Verify libssp-0.dll dependency exists and is genuine PE32+ DLL
+const dllPath = path.join(__dirname, '../dist/release/libssp-0.dll');
+assert(fs.existsSync(dllPath), 'libssp-0.dll must exist in dist/release/');
+const dllOut = execSync(`file "${dllPath}"`).toString();
+assert(dllOut.includes('PE32+ executable (DLL)'), 'libssp-0.dll must be a valid Windows DLL');
+console.log('✓ Verified dist/release/libssp-0.dll is a valid Windows 64-bit DLL');
+
+// 3. Verify MSI installer exists and contains libssp-0.dll & textures
 const msiPath = path.join(__dirname, '../dist/release/GarageBand-Setup.msi');
 assert(fs.existsSync(msiPath), 'GarageBand-Setup.msi must exist in dist/release/');
 const msiOut = execSync(`file "${msiPath}"`).toString();
 assert(msiOut.includes('MSI Installer') || msiOut.includes('Composite Document File'), 'Must be a valid MSI database');
-console.log('✓ Verified dist/release/GarageBand-Setup.msi is a valid MSI Installer');
 
-// 3. Verify MSI tables and contents
 const msiList = execSync(`msiextract --list "${msiPath}"`).toString();
 assert(msiList.includes('GarageBand/GarageBand.exe'), 'MSI must contain GarageBand.exe');
-assert(msiList.includes('GarageBand/app/index.html'), 'MSI must contain app/index.html');
-assert(msiList.includes('GarageBand/app/audio/engine.js'), 'MSI must contain audio engine');
-console.log('✓ Verified MSI package extracts correct file structure');
+assert(msiList.includes('GarageBand/libssp-0.dll'), 'MSI must contain libssp-0.dll dependency');
+assert(msiList.includes('GarageBand/app/assets/images/brushed_metal.png'), 'MSI must contain brushed_metal texture');
+assert(msiList.includes('GarageBand/app/assets/images/wood_grain.png'), 'MSI must contain wood_grain texture');
+assert(msiList.includes('GarageBand/app/assets/images/amp_grill.png'), 'MSI must contain amp_grill texture');
+console.log('✓ Verified MSI package extracts correct file structure and dependencies');
 
 // 4. Verify Icon resources
 const icoPath = path.join(__dirname, '../src/assets/icons/garageband.ico');

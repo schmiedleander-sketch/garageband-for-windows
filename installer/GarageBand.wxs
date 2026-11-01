@@ -44,6 +44,11 @@
             </File>
           </Component>
 
+          <!-- Core Shared Windows Runtime Dependencies -->
+          <Component Id="LibSspDll" Guid="D4E5F6A7-B8C9-0D1E-2F3A-4B5C6D7E8F90">
+            <File Id="LibSsp0Dll" Source="dist/bundle/libssp-0.dll" KeyPath="yes" />
+          </Component>
+
           <!-- App Subdirectory -->
           <Directory Id="AppDir" Name="app">
             <Component Id="AppHtml" Guid="A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D">
@@ -60,6 +65,14 @@
             </Directory>
 
             <Directory Id="AssetsDir" Name="assets">
+              <Directory Id="ImagesDir" Name="images">
+                <Component Id="TexturesComp" Guid="E5F6A7B8-C9D0-1E2F-3A4B-5C6D7E8F9A0B">
+                  <File Id="BrushedMetalPng" Source="dist/bundle/app/assets/images/brushed_metal.png" KeyPath="yes" />
+                  <File Id="WoodGrainPng" Source="dist/bundle/app/assets/images/wood_grain.png" />
+                  <File Id="AmpGrillPng" Source="dist/bundle/app/assets/images/amp_grill.png" />
+                </Component>
+              </Directory>
+
               <Directory Id="IconsDir" Name="icons">
                 <Component Id="IconsComp" Guid="C3D4E5F6-A7B8-4C9D-0E1F-2A3B4C5D6E7F">
                   <File Id="IconIco" Source="dist/bundle/app/assets/icons/garageband.ico" KeyPath="yes" />
@@ -87,8 +100,10 @@
     <!-- Installation Features -->
     <Feature Id="Complete" Title="GarageBand for Windows" Description="The complete GarageBand package including DAW, virtual instruments, and loops." Level="1">
       <ComponentRef Id="MainExecutable" />
+      <ComponentRef Id="LibSspDll" />
       <ComponentRef Id="AppHtml" />
       <ComponentRef Id="AudioEngineComp" />
+      <ComponentRef Id="TexturesComp" />
       <ComponentRef Id="IconsComp" />
     </Feature>
   </Product>
