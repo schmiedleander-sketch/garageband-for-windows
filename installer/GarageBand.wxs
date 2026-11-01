@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="A5B1C2D3-E4F5-4A1B-8C2D-3E4F5A1B2C3D"
+           Name="GarageBand for Windows"
+           Language="1033"
+           Version="1.0.0.0"
+           Manufacturer="GarageBand Windows Team"
+           UpgradeCode="F7E6D5C4-B3A2-4918-B7C6-D5E4F3A2B1C0">
+
+    <Package Description="GarageBand for Windows Setup Installer"
+             Comments="Apple's music creation app for Windows. Safe, verified, 100% clean."
+             Manufacturer="GarageBand Windows Team"
+             InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine" />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <Icon Id="AppIcon.ico" SourceFile="src/assets/icons/garageband.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+    <Property Id="ARPHELPLINK" Value="https://getgarageband.com/" />
+    <Property Id="ARPURLINFOABOUT" Value="https://getgarageband.com/" />
+
+    <!-- Directory Structure -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER" Name="GarageBand">
+          <Component Id="MainExecutable" Guid="91A2B3C4-D5E6-4F70-8192-A3B4C5D6E7F8">
+            <File Id="GarageBandExe" Source="dist/bundle/GarageBand.exe" KeyPath="yes">
+              <Shortcut Id="DesktopShortcut"
+                        Directory="DesktopFolder"
+                        Name="GarageBand"
+                        Description="Create, record, and mix music with GarageBand for Windows."
+                        WorkingDirectory="INSTALLFOLDER"
+                        Icon="AppIcon.ico"
+                        Advertise="yes" />
+              <Shortcut Id="StartMenuShortcut"
+                        Directory="ProgramMenuDir"
+                        Name="GarageBand"
+                        Description="Launch GarageBand for Windows"
+                        WorkingDirectory="INSTALLFOLDER"
+                        Icon="AppIcon.ico"
+                        Advertise="yes" />
+            </File>
+          </Component>
+
+          <!-- App Subdirectory -->
+          <Directory Id="AppDir" Name="app">
+            <Component Id="AppHtml" Guid="A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D">
+              <File Id="IndexHtml" Source="dist/bundle/app/index.html" KeyPath="yes" />
+              <File Id="StyleCss" Source="dist/bundle/app/style.css" />
+              <File Id="AppJs" Source="dist/bundle/app/app.js" />
+            </Component>
+
+            <Directory Id="AudioDir" Name="audio">
+              <Component Id="AudioEngineComp" Guid="B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E">
+                <File Id="AudioEngineJs" Source="dist/bundle/app/audio/engine.js" KeyPath="yes" />
+                <File Id="AudioLoopsJs" Source="dist/bundle/app/audio/loops.js" />
+              </Component>
+            </Directory>
+
+            <Directory Id="AssetsDir" Name="assets">
+              <Directory Id="IconsDir" Name="icons">
+                <Component Id="IconsComp" Guid="C3D4E5F6-A7B8-4C9D-0E1F-2A3B4C5D6E7F">
+                  <File Id="IconIco" Source="dist/bundle/app/assets/icons/garageband.ico" KeyPath="yes" />
+                  <File Id="IconSvg" Source="dist/bundle/app/assets/icons/garageband.svg" />
+                  <File Id="IconPng16" Source="dist/bundle/app/assets/icons/garageband-16.png" />
+                  <File Id="IconPng32" Source="dist/bundle/app/assets/icons/garageband-32.png" />
+                  <File Id="IconPng48" Source="dist/bundle/app/assets/icons/garageband-48.png" />
+                  <File Id="IconPng64" Source="dist/bundle/app/assets/icons/garageband-64.png" />
+                  <File Id="IconPng128" Source="dist/bundle/app/assets/icons/garageband-128.png" />
+                  <File Id="IconPng256" Source="dist/bundle/app/assets/icons/garageband-256.png" />
+                </Component>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <!-- Shortcuts Folders -->
+      <Directory Id="DesktopFolder" Name="Desktop" />
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuDir" Name="GarageBand" />
+      </Directory>
+    </Directory>
+
+    <!-- Installation Features -->
+    <Feature Id="Complete" Title="GarageBand for Windows" Description="The complete GarageBand package including DAW, virtual instruments, and loops." Level="1">
+      <ComponentRef Id="MainExecutable" />
+      <ComponentRef Id="AppHtml" />
+      <ComponentRef Id="AudioEngineComp" />
+      <ComponentRef Id="IconsComp" />
+    </Feature>
+  </Product>
+</Wix>

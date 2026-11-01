@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GarageBand - Windows Edition</title>
+  <link rel="icon" type="image/png" href="assets/icons/garageband-32.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="fluent-dark">
+  <!-- Windows Title Bar -->
+  <header class="win-titlebar">
+    <div class="win-titlebar-left">
+      <img src="assets/icons/garageband-32.png" class="app-icon" alt="GarageBand Icon" />
+      <span class="app-title">GarageBand for Windows</span>
+      <span class="project-name">— Project: "My Summer Anthem.band"</span>
+    </div>
+    <div class="win-menu-bar">
+      <span class="menu-item" id="menu-file">File</span>
+      <span class="menu-item" id="menu-edit">Edit</span>
+      <span class="menu-item" id="menu-track">Track</span>
+      <span class="menu-item" id="menu-mix">Mix</span>
+      <span class="menu-item" id="menu-help">Help</span>
+    </div>
+    <div class="win-window-controls">
+      <button class="win-btn win-min" title="Minimize" id="btn-win-min">🗕</button>
+      <button class="win-btn win-max" title="Maximize" id="btn-win-max">🗖</button>
+      <button class="win-btn win-close" title="Close" id="btn-win-close">✕</button>
+    </div>
+  </header>
+
+  <!-- GarageBand Main Toolbar & Transport Controls -->
+  <div class="gb-transport-bar">
+    <div class="transport-group left">
+      <button class="gb-btn" id="btn-new-track" title="Add Track">
+        <span class="icon">+</span> Track
+      </button>
+      <button class="gb-btn" id="btn-loop-browser" title="Apple Loops Library">
+        <span class="icon">🔄</span> Loops
+      </button>
+      <button class="gb-btn" id="btn-show-keyboard" title="Musical Typing / Keyboard">
+        <span class="icon">🎹</span> Instruments
+      </button>
+      <button class="gb-btn" id="btn-drum-pads" title="Drum Machine">
+        <span class="icon">🥁</span> Beat Sequencer
+      </button>
+    </div>
+
+    <!-- Center Transport Controls (Rewind, Play, Record, Loop) -->
+    <div class="transport-group center">
+      <button class="transport-btn" id="btn-rewind" title="Go to Beginning">⏮</button>
+      <button class="transport-btn play-btn" id="btn-play" title="Play / Pause">▶</button>
+      <button class="transport-btn record-btn" id="btn-record" title="Record">●</button>
+      <button class="transport-btn active" id="btn-cycle" title="Cycle / Loop Region">🔁</button>
+
+      <!-- LCD Display -->
+      <div class="gb-lcd-display">
+        <div class="lcd-section">
+          <span class="lcd-label">BAR / BEAT</span>
+          <span class="lcd-value" id="lcd-time">001. 1. 1</span>
+        </div>
+        <div class="lcd-divider"></div>
+        <div class="lcd-section">
+          <span class="lcd-label">TEMPO</span>
+          <span class="lcd-value clickable" id="lcd-bpm">120 BPM</span>
+        </div>
+        <div class="lcd-divider"></div>
+        <div class="lcd-section">
+          <span class="lcd-label">KEY SIGNATURE</span>
+          <span class="lcd-value">C Major</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Controls: Master Volume & Audio Effects Knobs -->
+    <div class="transport-group right">
+      <div class="knob-group" title="Reverb FX">
+        <label>REVERB</label>
+        <input type="range" id="fx-reverb" min="0" max="1" step="0.05" value="0.35" />
+      </div>
+      <div class="knob-group" title="Echo / Delay FX">
+        <label>DELAY</label>
+        <input type="range" id="fx-delay" min="0" max="1" step="0.05" value="0.25" />
+      </div>
+      <div class="knob-group" title="Master Volume">
+        <label>MASTER</label>
+        <input type="range" id="fx-master" min="0" max="1" step="0.02" value="0.85" />
+      </div>
+      <button class="gb-btn export-btn" id="btn-export-audio" title="Export Song to Audio">
+        💾 Export Song
+      </button>
+    </div>
+  </div>
+
+  <!-- Main DAW Workspace -->
+  <main class="gb-workspace">
+    <!-- Left Track Headers & Timeline -->
+    <section class="daw-main-section">
+      <!-- Timeline Ruler -->
+      <div class="timeline-ruler" id="timeline-ruler">
+        <div class="ruler-header">TRACKS</div>
+        <div class="ruler-ticks" id="ruler-ticks">
+          <!-- Populated by JavaScript: Bar 1, Bar 2, Bar 3, ... -->
+        </div>
+      </div>
+
+      <!-- Tracks Container -->
+      <div class="tracks-viewport" id="tracks-container">
+        <!-- Dynamic tracks inserted here -->
+      </div>
+    </section>
+
+    <!-- Side Panel (Loops Browser & Presets) -->
+    <aside class="gb-sidepanel" id="loops-panel">
+      <div class="panel-header">
+        <span class="panel-title">🎵 Apple Loops Browser</span>
+        <button class="panel-close-btn" id="btn-close-loops">✕</button>
+      </div>
+      <div class="loop-filter-chips" id="loop-filters">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="Beats">🥁 Beats</button>
+        <button class="filter-chip" data-filter="Keys">🎹 Keys</button>
+        <button class="filter-chip" data-filter="Synth">⚡ Synth</button>
+        <button class="filter-chip" data-filter="Guitar">🎸 Guitar</button>
+        <button class="filter-chip" data-filter="Bass">🔊 Bass</button>
+      </div>
+      <div class="loops-list" id="loops-list">
+        <!-- Loops injected by JS -->
+      </div>
+    </aside>
+  </main>
+
+  <!-- Bottom Instrument Drawer (Virtual Keyboard / Drum Sequencer / Guitar Amp) -->
+  <footer class="gb-bottom-drawer" id="instrument-drawer">
+    <div class="drawer-header">
+      <div class="drawer-tabs">
+        <button class="drawer-tab active" data-inst="piano">Grand Piano</button>
+        <button class="drawer-tab" data-inst="synth">Studio Poly Synth</button>
+        <button class="drawer-tab" data-inst="guitar">Electric Guitar</button>
+        <button class="drawer-tab" data-inst="bass">Deep Sub Bass</button>
+        <button class="drawer-tab" data-inst="drums">Drum Machine Pads</button>
+      </div>
+      <div class="drawer-tools">
+        <span class="octave-indicator">Octave: <b id="current-octave">4</b></span>
+        <button class="small-btn" id="btn-octave-down">Oct -</button>
+        <button class="small-btn" id="btn-octave-up">Oct +</button>
+        <button class="small-btn" id="btn-record-instrument">🔴 Record to Active Track</button>
+        <button class="drawer-toggle-btn" id="btn-toggle-drawer">▼</button>
+      </div>
+    </div>
+
+    <div class="drawer-content">
+      <!-- Piano Keys Container -->
+      <div class="instrument-view active" id="view-keyboard">
+        <div class="piano-keyboard" id="piano-keys">
+          <!-- Keys C3 to B4 rendered via JS -->
+        </div>
+      </div>
+
+      <!-- Drum Sequencer / Drum Pads -->
+      <div class="instrument-view" id="view-drums">
+        <div class="drum-pads-grid" id="drum-pads">
+          <button class="drum-pad" data-drum="kick">
+            <span class="pad-key">A</span>
+            <span class="pad-name">Kick Drum</span>
+          </button>
+          <button class="drum-pad" data-drum="snare">
+            <span class="pad-key">S</span>
+            <span class="pad-name">Studio Snare</span>
+          </button>
+          <button class="drum-pad" data-drum="hihat">
+            <span class="pad-key">D</span>
+            <span class="pad-name">Hi-Hat Closed</span>
+          </button>
+          <button class="drum-pad" data-drum="clap">
+            <span class="pad-key">F</span>
+            <span class="pad-name">Hand Clap</span>
+          </button>
+          <button class="drum-pad" data-drum="crash">
+            <span class="pad-key">G</span>
+            <span class="pad-name">Crash Cymbal</span>
+          </button>
+        </div>
+
+        <div class="drum-step-sequencer">
+          <div class="seq-row-label">Step Sequencer (16th notes):</div>
+          <div class="seq-grid" id="seq-steps-grid">
+            <!-- 16 beats step buttons -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Banner / Modal Dialog -->
+  <div class="gb-modal-overlay" id="modal-overlay">
+    <div class="gb-modal">
+      <div class="modal-header">
+        <h3 id="modal-title">GarageBand for Windows</h3>
+        <button class="modal-close-btn" id="modal-close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Content -->
+      </div>
+      <div class="modal-footer">
+        <button class="gb-btn primary" id="modal-ok">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="audio/engine.js"></script>
+  <script src="audio/loops.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

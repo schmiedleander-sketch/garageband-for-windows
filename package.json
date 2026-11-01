@@ -1,0 +1,25 @@
+{
+  "name": "garageband-windows",
+  "version": "1.0.0",
+  "description": "GarageBand for Windows - Create, record, and mix music with virtual instruments and loops.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/test_app.js",
+    "build:exe": "bash build-scripts/build-exe.sh",
+    "build:msi": "bash build-scripts/build-msi.sh",
+    "build:all": "bash build-scripts/build-all.sh"
+  },
+  "keywords": [
+    "garageband",
+    "daw",
+    "music",
+    "audio",
+    "windows",
+    "synthesizer",
+    "instruments",
+    "loops"
+  ],
+  "author": "GarageBand Team",
+  "license": "MIT"
+}

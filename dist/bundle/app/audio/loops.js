@@ -1,0 +1,145 @@
+// Apple Loop Presets and Predefined Patterns
+window.GARAGEBAND_LOOPS = [
+  {
+    id: 'hiphop-beat',
+    name: '808 Urban Trap Beat',
+    category: 'Beats',
+    bpm: 120,
+    instrument: 'drums',
+    bars: 2,
+    color: '#f59e0b',
+    pattern: [
+      { beat: 0, drum: 'kick' },
+      { beat: 2, drum: 'snare' },
+      { beat: 4, drum: 'kick' },
+      { beat: 6, drum: 'snare' },
+      { beat: 7, drum: 'kick' },
+      { beat: 0, drum: 'hihat' },
+      { beat: 1, drum: 'hihat' },
+      { beat: 2, drum: 'hihat' },
+      { beat: 3, drum: 'hihat' },
+      { beat: 4, drum: 'hihat' },
+      { beat: 5, drum: 'hihat' },
+      { beat: 6, drum: 'hihat' },
+      { beat: 7, drum: 'hihat' }
+    ]
+  },
+  {
+    id: 'acoustic-piano-chords',
+    name: 'Neo Soul Piano Chords',
+    category: 'Keys',
+    bpm: 120,
+    instrument: 'piano',
+    bars: 2,
+    color: '#3b82f6',
+    notes: [
+      { beat: 0, note: 'C4', freq: 261.63, dur: 1.8 },
+      { beat: 0, note: 'E4', freq: 329.63, dur: 1.8 },
+      { beat: 0, note: 'G4', freq: 392.00, dur: 1.8 },
+      { beat: 0, note: 'B4', freq: 493.88, dur: 1.8 },
+      { beat: 2, note: 'A3', freq: 220.00, dur: 1.8 },
+      { beat: 2, note: 'C4', freq: 261.63, dur: 1.8 },
+      { beat: 2, note: 'E4', freq: 329.63, dur: 1.8 },
+      { beat: 2, note: 'G4', freq: 392.00, dur: 1.8 },
+      { beat: 4, note: 'F3', freq: 174.61, dur: 1.8 },
+      { beat: 4, note: 'A3', freq: 220.00, dur: 1.8 },
+      { beat: 4, note: 'C4', freq: 261.63, dur: 1.8 },
+      { beat: 4, note: 'E4', freq: 329.63, dur: 1.8 },
+      { beat: 6, note: 'G3', freq: 196.00, dur: 1.8 },
+      { beat: 6, note: 'B3', freq: 246.94, dur: 1.8 },
+      { beat: 6, note: 'D4', freq: 293.66, dur: 1.8 },
+      { beat: 6, note: 'F4', freq: 349.23, dur: 1.8 }
+    ]
+  },
+  {
+    id: 'cyber-synth-riff',
+    name: 'Cyberpunk Synth Arp',
+    category: 'Synth',
+    bpm: 120,
+    instrument: 'synth',
+    bars: 2,
+    color: '#ec4899',
+    notes: [
+      { beat: 0, note: 'A4', freq: 440.00, dur: 0.25 },
+      { beat: 0.5, note: 'C5', freq: 523.25, dur: 0.25 },
+      { beat: 1, note: 'E5', freq: 659.25, dur: 0.25 },
+      { beat: 1.5, note: 'A5', freq: 880.00, dur: 0.25 },
+      { beat: 2, note: 'G4', freq: 392.00, dur: 0.25 },
+      { beat: 2.5, note: 'B4', freq: 493.88, dur: 0.25 },
+      { beat: 3, note: 'D5', freq: 587.33, dur: 0.25 },
+      { beat: 3.5, note: 'G5', freq: 783.99, dur: 0.25 },
+      { beat: 4, note: 'F4', freq: 349.23, dur: 0.25 },
+      { beat: 4.5, note: 'A4', freq: 440.00, dur: 0.25 },
+      { beat: 5, note: 'C5', freq: 523.25, dur: 0.25 },
+      { beat: 5.5, note: 'F5', freq: 698.46, dur: 0.25 },
+      { beat: 6, note: 'E4', freq: 329.63, dur: 0.25 },
+      { beat: 6.5, note: 'G4', freq: 392.00, dur: 0.25 },
+      { beat: 7, note: 'B4', freq: 493.88, dur: 0.25 },
+      { beat: 7.5, note: 'E5', freq: 659.25, dur: 0.25 }
+    ]
+  },
+  {
+    id: 'indie-rock-guitar',
+    name: 'Sunset Electric Guitar Riff',
+    category: 'Guitar',
+    bpm: 120,
+    instrument: 'guitar',
+    bars: 2,
+    color: '#ef4444',
+    notes: [
+      { beat: 0, note: 'E3', freq: 164.81, dur: 0.5 },
+      { beat: 0.5, note: 'G3', freq: 196.00, dur: 0.5 },
+      { beat: 1, note: 'A3', freq: 220.00, dur: 0.8 },
+      { beat: 2, note: 'B3', freq: 246.94, dur: 0.4 },
+      { beat: 2.5, note: 'A3', freq: 220.00, dur: 0.4 },
+      { beat: 3, note: 'G3', freq: 196.00, dur: 0.6 },
+      { beat: 4, note: 'D4', freq: 293.66, dur: 0.6 },
+      { beat: 5, note: 'C4', freq: 261.63, dur: 0.6 },
+      { beat: 6, note: 'B3', freq: 246.94, dur: 0.6 },
+      { beat: 7, note: 'E3', freq: 164.81, dur: 0.8 }
+    ]
+  },
+  {
+    id: 'deep-sub-bass',
+    name: 'Groove Master Sub Bass',
+    category: 'Bass',
+    bpm: 120,
+    instrument: 'bass',
+    bars: 2,
+    color: '#8b5cf6',
+    notes: [
+      { beat: 0, note: 'C2', freq: 65.41, dur: 0.9 },
+      { beat: 1, note: 'C2', freq: 65.41, dur: 0.4 },
+      { beat: 1.5, note: 'Eb2', freq: 77.78, dur: 0.4 },
+      { beat: 2, note: 'F2', freq: 87.31, dur: 0.9 },
+      { beat: 3.5, note: 'G2', freq: 98.00, dur: 0.4 },
+      { beat: 4, note: 'Ab2', freq: 103.83, dur: 0.9 },
+      { beat: 5.5, note: 'G2', freq: 98.00, dur: 0.4 },
+      { beat: 6, note: 'F2', freq: 87.31, dur: 0.8 },
+      { beat: 7, note: 'Eb2', freq: 77.78, dur: 0.8 }
+    ]
+  },
+  {
+    id: 'clap-dance-groove',
+    name: 'Studio Funk Clap & Hats',
+    category: 'Beats',
+    bpm: 120,
+    instrument: 'drums',
+    bars: 2,
+    color: '#10b981',
+    pattern: [
+      { beat: 1, drum: 'clap' },
+      { beat: 3, drum: 'clap' },
+      { beat: 5, drum: 'clap' },
+      { beat: 7, drum: 'clap' },
+      { beat: 0, drum: 'hihat' },
+      { beat: 1, drum: 'hihat' },
+      { beat: 2, drum: 'hihat' },
+      { beat: 3, drum: 'hihat' },
+      { beat: 4, drum: 'hihat' },
+      { beat: 5, drum: 'hihat' },
+      { beat: 6, drum: 'hihat' },
+      { beat: 7, drum: 'crash' }
+    ]
+  }
+];
